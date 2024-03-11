@@ -107,23 +107,4 @@ export class PhasetwoService {
         
     }
     
-    clearAllComeths = async(): Promise<boolean> => {
-        try {
-            const map = axios.get(apiUrl + `/map/${candidateId}`)
-            const mapContent = (await map).data.map.content
-            mapContent.forEach((elements, row: number) => {
-                elements.forEach(async(element, column: number) => {
-                    if (element != null) {
-                        await comethsService.remove({row, column})
-                    }
-                })
-            });
-    
-            return true;
-        } catch (error) {
-            return error.response?.data || error.message;
-        }
-        
-    }
-
 }
